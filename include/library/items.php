@@ -338,6 +338,26 @@ class Items {
 		return $return_value;
 	}
 
+	/**
+	 * Incrementa il numero di visite di un bene.
+	 *   
+	 * @param $type
+	 *   La tipologia di bene
+	 * @param $item_id
+	 *   L'ID del bene
+	 * @return 
+	 *   Vero se l'operazione ha avuto successo, falso altrimenti.
+	 *
+	 */
+
+	protected static function increment_views($type, $item_id) {
+		$db_handle = new Database();
+		$db_handle->connect();
+		$query_to_execute = "UPDATE $type SET ViewsNumber = ViewsNumber + 1 WHERE BeneID = '$item_id';";
+		$return_value = $db_handle->query($query_to_execute);
+		$db_handle->disconnect();
+		return $query_to_execute;
+	}
 }
 
 /**
@@ -515,6 +535,20 @@ class Richieste extends Items {
 
 	public static function disable_request($id_item) {
 		return parent::disable_item("Richieste", $id_item);
+	}
+
+	/**
+	 * Incrementa il numero di visite di una richiesta.
+	 *   
+	 * @param $item_id
+	 *   L'ID del bene
+	 * @return 
+	 *   Vero se l'operazione ha avuto successo, falso altrimenti.
+	 *
+	 */
+
+	public static function increment_views($item_id) {
+		return parent::increment_views("Richieste", $item_id);
 	}
 
 }
@@ -698,5 +732,20 @@ class Offerte extends Items {
 	public static function disable_offer($id_item) {
 		return parent::disable_item("Offerte", $id_item);
 	}
+	
+	/**
+	 * Incrementa il numero di visite di una offerta.
+	 *   
+	 * @param $item_id
+	 *   L'ID del bene
+	 * @return 
+	 *   Vero se l'operazione ha avuto successo, falso altrimenti.
+	 *
+	 */
+
+	public static function increment_views($item_id) {
+		return parent::increment_views("Offerte", $item_id);
+	}
+
 
 }

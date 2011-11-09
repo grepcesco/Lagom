@@ -11,9 +11,6 @@
  * @todo accesso autorizzato solo se loggati
  * @todo invio messaggio... selezionando utenti possibili tramite ajax
  * @todo in view_offer: impostare richiesta di conferma JS
- * @todo aggiungere feed back visivo a rifiuto di un'operazione
- * @todo se l'utente ha già fatto un offerta o richiesta su un bene, dovrebbe
- *   essere reindirizzato su tale pagina (però forse è meglio farlo sull'index)
  *
  * Tramite questa pagina è possibile per l'utente:
  *   - Visualizzare e modificare il proprio profilo;

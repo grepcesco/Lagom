@@ -34,6 +34,7 @@ include('include/templates/sidebar.inc.php');
 if(isset($_GET['request_id'])) {
 	// @todo sanitization??
 	$request = Richieste::get_request($_GET['request_id'], "BeneID");
+	Richieste::increment_views($_GET['request_id']);
 	echo '<h2>'.$request['Titolo'].'</h2>';
 	echo '<p>'.$request['Descrizione'].'</p>';
 
@@ -59,6 +60,7 @@ elseif(isset($_GET['offer_id'])) {
 	// @todo sanitization??
 	// todo: sistemare immagine...
 	$offer = Offerte::get_offer($_GET['offer_id'], "BeneID");
+	Offerte::increment_views($_GET['offer_id']);
 	echo '<h2>'.$offer['Titolo'].'</h2>';
 	echo Images_View::get_medium_thumb_img_tag($offer['ImmaginePercorsoURL']);
 	echo '<p>'.$offer['Descrizione'].'</p>';
