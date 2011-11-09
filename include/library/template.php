@@ -150,7 +150,7 @@ class Messages_View extends Generic_View {
 		else {
 			$array_headings = array("Data", "Mittente", "Titolo", "Corpo", "Info", "Azioni");
 			foreach($messaggi as $msg) {
-				$link = '<a href="pannello_utente?q=view_msg&msg_id=' . 
+				$link = '<a href="pannello_utente.php?q=view_msg&msg_id=' . 
 							$msg['MsgID'].'&destinatario='.$msg['Mittente'].'" >';
 
 				$delete_action_tag = "<a class=\"remove\" id=\"msg-".$msg['MsgID']."\" href=\"#\" title=\"Cancella messaggio\"><img src=\"images/delete.png\" /></a>";
