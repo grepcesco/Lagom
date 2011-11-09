@@ -1,0 +1,520 @@
+
+/**
+ * @file stile.css
+ * @brief Foglio di stile principale del sito
+ * @author  Francesco Lorenzon <grepcesco@gmail.com>
+ * 
+ * Il file contiene la descrizione grafica degli elementi del sito.
+ *
+ */
+
+@media screen {
+
+#wrapper {
+	width: 960px;
+	margin: 10px auto;
+	background-color: #fff;
+	-webkit-border-radius: 10px;
+	-webkit-border-radius: 10px;
+	-moz-border-radius: 10px;
+	-moz-border-radius: 10px;
+	border-radius: 10px;
+	border-radius: 10px;
+}
+
+body { 
+	margin:0;
+	padding:0;
+	font: 15px/1.4 'TitilliumText22LRegular',"Helvetica Neue",Helvetica,Arial, sans-serif; 
+	background-color: #eee;
+}
+
+header {
+	padding: 16px 35px 6px;
+	position:relative;
+}
+
+header a {
+	color: #000;
+	text-decoration:none;
+	font-family: 'TitilliumText22LThin';
+	font-size:36px;
+}
+
+header a #orange_text {
+	color: #f14a20;
+}
+
+aside {
+	float: left;
+	width: 200px;
+	margin-top: 15px;
+}
+
+#main-content {
+	margin-top: 15px;
+	margin-left: 213px;
+	margin-bottom: 30px;
+	padding-bottom: 67px;
+	padding-right: 20px;
+	min-height: 270px;
+	overflow:hidden;
+	width: 720px;
+}
+
+#main-content h1, h2, h3, h4, h5 {
+	font-family: 'TitilliumText22LLight';
+	color: #f14a20;
+	border-bottom: 1px solid #ccc;
+}
+
+#main-content h2 {
+	margin-bottom: 10px;
+}
+
+#main_content_without_sidebar {
+	margin-top: 15px;
+	padding: 0 30px;
+	min-height: 370px;
+}
+
+nav {
+	height: 60px;
+	width: 960px;
+	left:-10px;
+	padding-left: 20px;
+	line-height: 60px;
+	background-color: #f14a20;
+	margin: 5px 0 0;
+	position: relative;
+	-webkit-border-radius: 10px;
+	-webkit-border-radius: 10px;
+	-moz-border-radius: 10px;
+	-moz-border-radius: 10px;
+	border-radius: 10px;
+	border-radius: 10px;
+}
+
+nav ul {
+	list-style: none;
+	padding: 0;
+}
+
+nav ul li {
+	float: left; 
+}
+
+nav ul li a {
+	display:block;
+	text-align: center;
+	text-decoration: none;
+	padding: 0 15px;
+	color: #fff;
+	text-transform: uppercase;
+	letter-spacing: -1px;
+	font-family:'TitilliumText22LLight'; 
+	font-size: 20px;
+}
+
+nav ul li a:hover {
+	border-top: 5px solid #b50c0c;
+	line-height: 50px;
+}
+
+nav ul li a:hover {
+	color: #fff;
+}
+
+/* forms styling */
+
+fieldset {
+	margin-bottom: 10px;
+	background-color: #eee;
+}
+
+fieldset legend {
+	font: 17px/1.4 'TitilliumText22LBold',"Helvetica Neue",Helvetica,Arial, sans-serif; 
+}
+
+fieldset p {
+	clear: both;
+	line-height: 30px;
+} 
+
+fieldset label, fieldset input { 
+	display: block; 
+	float: left; 
+	margin: .2em;
+	line-height: normal;
+} 
+
+
+
+fieldset label .didascalia {
+	color:#888;
+	display:block;
+	font-size:11px;
+	font-weight:normal;
+}
+
+fieldset label.error {
+	color: red;
+}
+
+fieldset input {
+	height: 20px;
+	border: 1px solid #777;
+}
+
+fieldset input.disabled {
+	background-color: #ccc;
+}
+
+input#submit_reg {
+	height: 25px;
+	border: 1px solid #777;
+}
+
+fieldset label { 
+ width: 195px; 
+ padding-right: 1em; 
+}
+
+footer {
+	font-family:'TitilliumText22LLight'; 
+	height: 130px;
+	line-height: 30px;
+	color: #fff;
+	clear: both;
+	width: 100%;
+	padding: 50px 0;
+	text-align: center;
+	background-color: #f14a20;
+	-webkit-border-bottom-left-radius: 10px;
+	-webkit-border-bottom-right-radius: 10px;
+	-moz-border-radius-bottomleft: 10px;
+	-moz-border-radius-bottomright: 10px;
+	border-bottom-left-radius: 10px;
+	border-bottom-right-radius: 10px;
+}
+
+footer a {
+	text-decoration: none;
+	color: #fff;
+}
+
+/* grafica per menu utente categorie e pannello */
+
+ul#menu {
+	list-style-type: none;
+	width: 100%;
+	margin: 0 0 10px 0;
+	padding: 0;
+}
+ul#menu ul {
+	list-style-type: none;
+	padding: 0;
+	font-size: 12px;
+}
+#menu div {
+    display: block;
+	color: #fff;
+	border-bottom: 1px solid #fff;
+    background-color: #f14a20;
+    font-weight: bold;
+    cursor: pointer;
+    padding: 5px 5px 5px 7px;
+    list-style: circle;
+}
+
+ul#menu li ul li a {
+	color: black;
+}
+
+ul#menu li:first-child div {
+    -moz-border-radius-topright: 5px;
+    -webkit-border-top-right-radius: 5px;
+    border-top-right-radius: 5px;
+}
+ul#menu li:last-child div {
+    -moz-border-radius-bottomright: 5px;
+    -webkit-border-bottom-right-radius: 5px;
+    border-bottom-right-radius: 5px;
+	margin-top: -2px;
+	padding-bottom: 2px;
+	border-bottom: none;
+}
+#menu ul li {
+    padding: 3px 3px 3px 7px;
+}
+
+aside a {
+	color: white;
+    text-decoration: none;
+}
+
+aside a:hover {
+    text-decoration: underline;
+}
+
+.click_subcategory {
+	display: inline-block;
+	float:right;
+}
+
+#menu div:hover {
+	color: #ff0;
+}
+
+/* Grafica per menu filtro richieste offerte */
+
+ul#menu_filtro {
+	list-style-type: none;
+	width: 170px;
+	margin: 0 0 10px 0;
+	padding: 0;
+}
+
+ul#menu_filtro li {
+    display: block;
+	color: #fff;
+	margin: 0;
+    background-color: #f19c2b;
+    font-weight: bold;
+    cursor: pointer;
+    padding: 5px 5px 5px 7px;
+    list-style: circle;
+}
+
+ul#menu_filtro li:first-child {
+    -moz-border-radius-topright: 5px;
+    -webkit-border-top-right-radius: 5px;
+    border-top-right-radius: 5px;
+	border-bottom: 1px dotted #fff;
+}
+
+ul#menu_filtro li:last-child {
+    -moz-border-radius-bottomright: 5px;
+    -webkit-border-bottom-right-radius: 5px;
+    border-bottom-right-radius: 5px;
+}
+
+/* Grafica per presentazione */
+
+a.number_answers {
+	text-decoration: none;
+	background-color: #f14a20;
+	display: block;
+	float:right;
+	width: 15px;
+	height: 15px;
+	text-align: center;
+	color: #fff;
+	margin-bottom: 3px;
+	margin-right: 3px;
+	padding-right: 3px;
+}
+
+.item_box {
+	width: 162px;
+	height: 190px;
+	padding: 2px 5px;
+	margin: 0 5px 15px 2px;
+	float: left;
+}
+
+.item_box a {
+	text-decoration: none;
+}
+
+.item_box img {
+	display: block;
+	margin: 0 auto;
+	padding: 5px 0;
+	vertical-align:middle;
+}
+
+.image_container {
+	height:130px;
+	width: 160px;
+	border:none;
+	display: table-cell;
+	vertical-align:middle;
+}
+
+.item_image {
+	float:left;
+	padding-right: 10px;
+}
+
+.request_box {
+	height: 160px!important;
+}
+
+/* varie */
+
+/* spostare notification con notify box todo */
+
+#notify_box {
+	position: absolute; 
+	right: 0; 
+	top: 47px;
+	width: 200px; 
+	background-color: #777;
+	color: #fff;
+	padding: 10px 10px 2px;
+	font-size: 10px;
+	border-top: 2px solid #eee;
+	-webkit-border-radius: 10px 0 10px 10px;
+	-webkit-border-radius: 10px 0 10px 10px;
+	-moz-border-radius: 10px 0 10px 10px;
+	-moz-border-radius: 10px 0 10px 10px;
+	border-radius: 10px 0 10px 10px;
+	border-radius: 10px 0 10px 10px;
+	line-height: normal;
+}
+
+#notify_box h3 {
+	margin: 0 0 5px 0;
+	font-size: 13px;
+	color: #fff;
+	border: none;
+	cursor: pointer;
+	text-align: center;
+}
+
+a.notification_box {
+	display:block;
+	border-bottom: 1px solid #888;
+	background-color: #fff;
+	color: #333;
+	text-decoration: none;
+	padding: 3px;
+	margin-bottom: 6px;
+	-webkit-border-radius: 3px;
+	-moz-border-radius: 3px;
+	border-radius: 3px;
+}
+
+a.notification_box:hover {
+	text-decoration: underline;
+}
+
+a.notification_box:last-child {
+	border-bottom: none;
+}
+
+.clear { clear:both;}
+
+.didascalia {
+	color: #888;
+	font-size: 11px;
+}
+
+.tabella {
+	font-size: 12px;
+	width: 100%;
+	border: 1px solid #777;
+	border-collapse: collapse;
+}
+
+.tabella td, .tabella th {
+	border: 1px solid #777;
+	margin:0;
+	text-indent: 3px;
+}
+
+.tabella td.azioni {
+	text-align: center;
+	padding-top: 3px;
+}
+
+a.remove {
+	color: #C00;
+    font-size: 16px;
+    font-weight: 700;
+	text-decoration: none;
+}
+
+a.remove:hover {
+	color: #fff;
+}
+
+.hide { position: absolute; left: -9999px }
+
+}
+
+/* caricamento caratteri */
+
+@font-face {
+    font-family: 'TitilliumText22LThin';
+    src: url('../include/font/TitilliumText22L001-webfont.eot');
+    src: url('../include/font/TitilliumText22L001-webfont.eot?#iefix') format('embedded-opentype'),
+         url('../include/font/TitilliumText22L001-webfont.woff') format('woff'),
+         url('../include/font/TitilliumText22L001-webfont.ttf') format('truetype'),
+         url('../include/font/TitilliumText22L001-webfont.svg#TitilliumText22LThin') format('svg');
+    font-weight: normal;
+    font-style: normal;
+
+}
+
+@font-face {
+    font-family: 'TitilliumText22LLight';
+    src: url('../include/font/TitilliumText22L002-webfont.eot');
+    src: url('../include/font/TitilliumText22L002-webfont.eot?#iefix') format('embedded-opentype'),
+         url('../include/font/TitilliumText22L002-webfont.woff') format('woff'),
+         url('../include/font/TitilliumText22L002-webfont.ttf') format('truetype'),
+         url('../include/font/TitilliumText22L002-webfont.svg#TitilliumText22LLight') format('svg');
+    font-weight: normal;
+    font-style: normal;
+
+}
+
+@font-face {
+    font-family: 'TitilliumText22LRegular';
+    src: url('../include/font/TitilliumText22L003-webfont.eot');
+    src: url('../include/font/TitilliumText22L003-webfont.eot?#iefix') format('embedded-opentype'),
+         url('../include/font/TitilliumText22L003-webfont.woff') format('woff'),
+         url('../include/font/TitilliumText22L003-webfont.ttf') format('truetype'),
+         url('../include/font/TitilliumText22L003-webfont.svg#TitilliumText22LRegular') format('svg');
+    font-weight: normal;
+    font-style: normal;
+
+}
+
+@font-face {
+    font-family: 'TitilliumText22LMedium';
+    src: url('../include/font/TitilliumText22L004-webfont.eot');
+    src: url('../include/font/TitilliumText22L004-webfont.eot?#iefix') format('embedded-opentype'),
+         url('../include/font/TitilliumText22L004-webfont.woff') format('woff'),
+         url('../include/font/TitilliumText22L004-webfont.ttf') format('truetype'),
+         url('../include/font/TitilliumText22L004-webfont.svg#TitilliumText22LMedium') format('svg');
+    font-weight: normal;
+    font-style: normal;
+
+}
+
+@font-face {
+    font-family: 'TitilliumText22LBold';
+    src: url('../include/font/TitilliumText22L005-webfont.eot');
+    src: url('../include/font/TitilliumText22L005-webfont.eot?#iefix') format('embedded-opentype'),
+         url('../include/font/TitilliumText22L005-webfont.woff') format('woff'),
+         url('../include/font/TitilliumText22L005-webfont.ttf') format('truetype'),
+         url('../include/font/TitilliumText22L005-webfont.svg#TitilliumText22LBold') format('svg');
+    font-weight: normal;
+    font-style: normal;
+
+}
+
+@font-face {
+    font-family: 'TitilliumText22LXBold';
+    src: url('../include/font/TitilliumText22L006-webfont.eot');
+    src: url('../include/font/TitilliumText22L006-webfont.eot?#iefix') format('embedded-opentype'),
+         url('../include/font/TitilliumText22L006-webfont.woff') format('woff'),
+         url('../include/font/TitilliumText22L006-webfont.ttf') format('truetype'),
+         url('../include/font/TitilliumText22L006-webfont.svg#TitilliumText22LXBold') format('svg');
+    font-weight: normal;
+    font-style: normal;
+
+}
+

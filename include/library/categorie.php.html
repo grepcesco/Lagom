@@ -1,0 +1,113 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<title>/var/www/testing/include/library/categorie.php.html</title>
+<meta name="Generator" content="Vim/7.2">
+<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+</head>
+<body bgcolor="#333333" text="#ffffff"><font face="monospace">
+<span style="background-color: #0d0d0d"><font color="#ffa500">&lt;?php</font></span><br>
+<br>
+<font color="#80a0ff">/**</font><br>
+<font color="#80a0ff">&nbsp;* @class Categorie.</font><br>
+<font color="#80a0ff">&nbsp;*</font><br>
+<font color="#80a0ff">&nbsp;* @brief Classe per la gestione delle categorie.</font><br>
+<font color="#80a0ff">&nbsp;*</font><br>
+<font color="#80a0ff">&nbsp;* Questa classe fornisce tutta una serie di metodi di supporto alla gestione</font><br>
+<font color="#80a0ff">&nbsp;* delle categorie.</font><br>
+<font color="#80a0ff">&nbsp;*</font><br>
+<font color="#80a0ff">&nbsp;*/</font><br>
+<br>
+<font color="#60ff60"><b>class</b></font>&nbsp;Categorie <span style="background-color: #0d0d0d"><font color="#ffa500">{</font></span><br>
+&nbsp;&nbsp;&nbsp;&nbsp;<font color="#ffff60"><b>const</b></font>&nbsp;DEFAULT_CATEGORY_THUMB <font color="#ffff60"><b>=</b></font>&nbsp;&quot;&quot;;<br>
+<br>
+&nbsp;&nbsp;&nbsp;&nbsp;<font color="#80a0ff">/**</font><br>
+<font color="#80a0ff">&nbsp;&nbsp;&nbsp;&nbsp; * Restituisce tutte le categorie presenti nel sito.</font><br>
+<font color="#80a0ff">&nbsp;&nbsp;&nbsp;&nbsp; *</font><br>
+<font color="#80a0ff">&nbsp;&nbsp;&nbsp;&nbsp; * @param $with_image</font><br>
+<font color="#80a0ff">&nbsp;&nbsp;&nbsp;&nbsp; *&nbsp;&nbsp; Se falso (valore predefinito) torna solo i titoli delle categorie.</font><br>
+<font color="#80a0ff">&nbsp;&nbsp;&nbsp;&nbsp; *&nbsp;&nbsp; Altrimenti ritorna anche le immagini di anteprima.</font><br>
+<font color="#80a0ff">&nbsp;&nbsp;&nbsp;&nbsp; * @return </font><br>
+<font color="#80a0ff">&nbsp;&nbsp;&nbsp;&nbsp; *&nbsp;&nbsp; Tutte le categorie presenti nel sito come array.</font><br>
+<font color="#80a0ff">&nbsp;&nbsp;&nbsp;&nbsp; */</font><br>
+<br>
+&nbsp;&nbsp;&nbsp;&nbsp;<font color="#60ff60"><b>public</b></font>&nbsp;<font color="#60ff60"><b>static</b></font>&nbsp;<font color="#ff80ff">function</font>&nbsp;get_categories<span style="background-color: #0d0d0d"><font color="#ffa500">(</font></span><font color="#ffff60"><b>$</b></font><font color="#40ffff">genitore</font>, <font color="#ffff60"><b>$</b></font><font color="#40ffff">with_image</font>&nbsp;<font color="#ffff60"><b>=</b></font>&nbsp;<span style="background-color: #0d0d0d"><font color="#ffa0a0">False</font></span><span style="background-color: #0d0d0d"><font color="#ffa500">)</font></span>&nbsp;<span style="background-color: #0d0d0d"><font color="#ffa500">{</font></span>&nbsp;<font color="#80a0ff">// andrebbe migliorata l'estetica...</font><br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<font color="#ffff60"><b>$</b></font><font color="#40ffff">db_handle</font>&nbsp;<font color="#ffff60"><b>=</b></font>&nbsp;Database<font color="#ffff60"><b>::</b></font>open_db<span style="background-color: #0d0d0d"><font color="#ffa500">()</font></span>;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<font color="#ffff60"><b>if</b></font><span style="background-color: #0d0d0d"><font color="#ffa500">(</font></span><font color="#ffff60"><b>$</b></font><font color="#40ffff">genitore</font>&nbsp;<font color="#ffff60"><b>==</b></font>&nbsp;''<span style="background-color: #0d0d0d"><font color="#ffa500">)</font></span>&nbsp;<span style="background-color: #0d0d0d"><font color="#ffa500">{</font></span><br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<font color="#ffff60"><b>$</b></font><font color="#40ffff">query</font>&nbsp;<font color="#ffff60"><b>=</b></font>&nbsp;&quot;<span style="background-color: #0d0d0d"><font color="#ffa0a0">SELECT `Titolo`</font></span>&quot;<font color="#ffff60"><b>.</b></font><span style="background-color: #0d0d0d"><font color="#ffa500">(</font></span><font color="#ffff60"><b>$</b></font><font color="#40ffff">with_image</font><font color="#ffff60"><b>?</b></font>&quot;<span style="background-color: #0d0d0d"><font color="#ffa0a0">, `ImmaginePercorsoURL`</font></span>&quot;<font color="#ffff60"><b>:</b></font>&quot;&quot;<span style="background-color: #0d0d0d"><font color="#ffa500">)</font></span><font color="#ffff60"><b>.</b></font>&quot;<span style="background-color: #0d0d0d"><font color="#ffa0a0">&nbsp;FROM Categorie WHERE `ParentID` IS NULL;</font></span>&quot;;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span style="background-color: #0d0d0d"><font color="#ffa500">}</font></span>&nbsp;<font color="#ffff60"><b>else</b></font>&nbsp;<span style="background-color: #0d0d0d"><font color="#ffa500">{</font></span><br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<font color="#ffff60"><b>$</b></font><font color="#40ffff">query</font>&nbsp;<font color="#ffff60"><b>=</b></font>&nbsp;&quot;<span style="background-color: #0d0d0d"><font color="#ffa0a0">SELECT `Titolo`</font></span>&quot;<font color="#ffff60"><b>.</b></font><span style="background-color: #0d0d0d"><font color="#ffa500">(</font></span><font color="#ffff60"><b>$</b></font><font color="#40ffff">with_image</font><font color="#ffff60"><b>?</b></font>&quot;<span style="background-color: #0d0d0d"><font color="#ffa0a0">, `ImmaginePercorsoURL`</font></span>&quot;<font color="#ffff60"><b>:</b></font>&quot;&quot;<span style="background-color: #0d0d0d"><font color="#ffa500">)</font></span><font color="#ffff60"><b>.</b></font>&quot;<span style="background-color: #0d0d0d"><font color="#ffa0a0">&nbsp;FROM Categorie WHERE `ParentID` = '</font></span>&quot;<font color="#ffff60"><b>.</b></font><font color="#ffff60"><b>$</b></font><font color="#40ffff">genitore</font><font color="#ffff60"><b>.</b></font>&quot;<span style="background-color: #0d0d0d"><font color="#ffa0a0">';</font></span>&quot;;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span style="background-color: #0d0d0d"><font color="#ffa500">}</font></span><br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<font color="#ffff60"><b>$</b></font><font color="#40ffff">risultato</font>&nbsp;<font color="#ffff60"><b>=</b></font>&nbsp;<font color="#ffff60"><b>$</b></font><font color="#40ffff">db_handle</font><font color="#60ff60"><b>-&gt;</b></font>query<span style="background-color: #0d0d0d"><font color="#ffa500">(</font></span><font color="#ffff60"><b>$</b></font><font color="#40ffff">query</font><span style="background-color: #0d0d0d"><font color="#ffa500">)</font></span>;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<font color="#ffff60"><b>while</b></font><span style="background-color: #0d0d0d"><font color="#ffa500">(</font></span><font color="#ffff60"><b>$</b></font><font color="#40ffff">temp</font>&nbsp;<font color="#ffff60"><b>=</b></font>&nbsp;<font color="#40ffff">mysql_fetch_array</font><span style="background-color: #0d0d0d"><font color="#ffa500">(</font></span><font color="#ffff60"><b>$</b></font><font color="#40ffff">risultato</font><span style="background-color: #0d0d0d"><font color="#ffa500">))</font></span>&nbsp;<font color="#ffff60"><b>$</b></font><font color="#40ffff">array_risultato</font><span style="background-color: #0d0d0d"><font color="#ffa500">[]</font></span>&nbsp;<font color="#ffff60"><b>=</b></font>&nbsp;<font color="#ffff60"><b>$</b></font><font color="#40ffff">temp</font>;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<font color="#ffff60"><b>$</b></font><font color="#40ffff">db_handle</font><font color="#60ff60"><b>-&gt;</b></font>disconnect<span style="background-color: #0d0d0d"><font color="#ffa500">()</font></span>;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<font color="#ffff60"><b>return</b></font>&nbsp;<font color="#ffff60"><b>$</b></font><font color="#40ffff">array_risultato</font>;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;<span style="background-color: #0d0d0d"><font color="#ffa500">}</font></span><br>
+<br>
+&nbsp;&nbsp;&nbsp;&nbsp;<font color="#80a0ff">/**</font><br>
+<font color="#80a0ff">&nbsp;&nbsp;&nbsp;&nbsp; * Indica se la categoria è una categoria senza genitore.</font><br>
+<font color="#80a0ff">&nbsp;&nbsp;&nbsp;&nbsp; * </font><br>
+<font color="#80a0ff">&nbsp;&nbsp;&nbsp;&nbsp; * @param $category</font><br>
+<font color="#80a0ff">&nbsp;&nbsp;&nbsp;&nbsp; *&nbsp;&nbsp; La categoria da verificare</font><br>
+<font color="#80a0ff">&nbsp;&nbsp;&nbsp;&nbsp; * @return</font><br>
+<font color="#80a0ff">&nbsp;&nbsp;&nbsp;&nbsp; *&nbsp;&nbsp; Vero se la categoria non ha genitori, falso altrimenti (è una sottocategoria).</font><br>
+<font color="#80a0ff">&nbsp;&nbsp;&nbsp;&nbsp; */</font><br>
+<br>
+&nbsp;&nbsp;&nbsp;&nbsp;<font color="#60ff60"><b>public</b></font>&nbsp;<font color="#60ff60"><b>static</b></font>&nbsp;<font color="#ff80ff">function</font>&nbsp;is_parent_category<span style="background-color: #0d0d0d"><font color="#ffa500">(</font></span><font color="#ffff60"><b>$</b></font><font color="#40ffff">category</font><span style="background-color: #0d0d0d"><font color="#ffa500">)</font></span>&nbsp;<span style="background-color: #0d0d0d"><font color="#ffa500">{</font></span><br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<font color="#ffff60"><b>$</b></font><font color="#40ffff">db_handle</font>&nbsp;<font color="#ffff60"><b>=</b></font>&nbsp;Database<font color="#ffff60"><b>::</b></font>open_db<span style="background-color: #0d0d0d"><font color="#ffa500">()</font></span>;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<font color="#ffff60"><b>$</b></font><font color="#40ffff">query</font>&nbsp;<font color="#ffff60"><b>=</b></font>&nbsp;&quot;<span style="background-color: #0d0d0d"><font color="#ffa0a0">SELECT COUNT(*) FROM Categorie WHERE `Titolo` = '</font></span><font color="#ffff60"><b>$</b></font><font color="#40ffff">category</font><span style="background-color: #0d0d0d"><font color="#ffa0a0">' AND `ParentID` IS NULL;</font></span>&quot;;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<font color="#ffff60"><b>$</b></font><font color="#40ffff">risultato</font>&nbsp;<font color="#ffff60"><b>=</b></font>&nbsp;<font color="#ffff60"><b>$</b></font><font color="#40ffff">db_handle</font><font color="#60ff60"><b>-&gt;</b></font>query<span style="background-color: #0d0d0d"><font color="#ffa500">(</font></span><font color="#ffff60"><b>$</b></font><font color="#40ffff">query</font><span style="background-color: #0d0d0d"><font color="#ffa500">)</font></span>;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<font color="#ffff60"><b>$</b></font><font color="#40ffff">return_value</font>&nbsp;<font color="#ffff60"><b>=</b></font>&nbsp;<font color="#40ffff">mysql_result</font><span style="background-color: #0d0d0d"><font color="#ffa500">(</font></span><font color="#ffff60"><b>$</b></font><font color="#40ffff">risultato</font>, <span style="background-color: #0d0d0d"><font color="#ffa0a0">0</font></span><span style="background-color: #0d0d0d"><font color="#ffa500">)</font></span>;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<font color="#ffff60"><b>$</b></font><font color="#40ffff">db_handle</font><font color="#60ff60"><b>-&gt;</b></font>disconnect<span style="background-color: #0d0d0d"><font color="#ffa500">()</font></span>;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<font color="#ffff60"><b>return</b></font>&nbsp;<font color="#ffff60"><b>$</b></font><font color="#40ffff">return_value</font>;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;<span style="background-color: #0d0d0d"><font color="#ffa500">}</font></span><br>
+<br>
+&nbsp;&nbsp;&nbsp;&nbsp;<font color="#80a0ff">/**</font><br>
+<font color="#80a0ff">&nbsp;&nbsp;&nbsp;&nbsp; * Inserisce una categoria nel sito.</font><br>
+<font color="#80a0ff">&nbsp;&nbsp;&nbsp;&nbsp; *</font><br>
+<font color="#80a0ff">&nbsp;&nbsp;&nbsp;&nbsp; * @param $title</font><br>
+<font color="#80a0ff">&nbsp;&nbsp;&nbsp;&nbsp; *&nbsp;&nbsp; La stringa contenente il titolo della categoria da inserire.</font><br>
+<font color="#80a0ff">&nbsp;&nbsp;&nbsp;&nbsp; * @param $parent</font><br>
+<font color="#80a0ff">&nbsp;&nbsp;&nbsp;&nbsp; * @param $image</font><br>
+<font color="#80a0ff">&nbsp;&nbsp;&nbsp;&nbsp; *&nbsp;&nbsp; L'indirizzo all'immagine che rappresenta la categoria.</font><br>
+<font color="#80a0ff">&nbsp;&nbsp;&nbsp;&nbsp; *&nbsp;&nbsp; Se non viene fornito alcun indirizzo viene inserito un'immagine</font><br>
+<font color="#80a0ff">&nbsp;&nbsp;&nbsp;&nbsp; *&nbsp;&nbsp; predefinita.</font><br>
+<font color="#80a0ff">&nbsp;&nbsp;&nbsp;&nbsp; * @return </font><br>
+<font color="#80a0ff">&nbsp;&nbsp;&nbsp;&nbsp; *&nbsp;&nbsp; Vero se l'operazione ha avuto successo, falso altrimenti.</font><br>
+<font color="#80a0ff">&nbsp;&nbsp;&nbsp;&nbsp; */</font><br>
+<br>
+&nbsp;&nbsp;&nbsp;&nbsp;<font color="#60ff60"><b>public</b></font>&nbsp;<font color="#60ff60"><b>static</b></font>&nbsp;<font color="#ff80ff">function</font>&nbsp;insert_category<span style="background-color: #0d0d0d"><font color="#ffa500">(</font></span><font color="#ffff60"><b>$</b></font><font color="#40ffff">title</font>, <font color="#ffff60"><b>$</b></font><font color="#40ffff">parent</font>, <font color="#ffff60"><b>$</b></font><font color="#40ffff">image</font>&nbsp;<font color="#ffff60"><b>=</b></font>&nbsp;<font color="#60ff60"><b>self</b></font><font color="#ffff60"><b>::</b></font>DEFAULT_CATEGORY_THUMB<span style="background-color: #0d0d0d"><font color="#ffa500">)</font></span>&nbsp;<span style="background-color: #0d0d0d"><font color="#ffa500">{</font></span>&nbsp;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<font color="#ffff60"><b>$</b></font><font color="#40ffff">db_handle</font>&nbsp;<font color="#ffff60"><b>=</b></font>&nbsp;<font color="#ff80ff">new</font>&nbsp;Database<span style="background-color: #0d0d0d"><font color="#ffa500">()</font></span>;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<font color="#ffff60"><b>$</b></font><font color="#40ffff">db_handle</font><font color="#60ff60"><b>-&gt;</b></font>connect<span style="background-color: #0d0d0d"><font color="#ffa500">()</font></span>;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<font color="#ffff60"><b>if</b></font><span style="background-color: #0d0d0d"><font color="#ffa500">(</font></span><font color="#ffff60"><b>$</b></font><font color="#40ffff">parent</font>&nbsp;<font color="#ffff60"><b>!=</b></font>&nbsp;&quot;<span style="background-color: #0d0d0d"><font color="#ffa0a0">Nessuno</font></span>&quot;<span style="background-color: #0d0d0d"><font color="#ffa500">)</font></span>&nbsp;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<font color="#ffff60"><b>$</b></font><font color="#40ffff">query_to_execute</font>&nbsp;<font color="#ffff60"><b>=</b></font>&nbsp;&quot;<span style="background-color: #0d0d0d"><font color="#ffa0a0">INSERT INTO Categorie VALUES ('</font></span>&quot;<font color="#ffff60"><b>.</b></font><font color="#40ffff">mysql_real_escape_string</font><span style="background-color: #0d0d0d"><font color="#ffa500">(</font></span><font color="#ffff60"><b>$</b></font><font color="#40ffff">title</font><span style="background-color: #0d0d0d"><font color="#ffa500">)</font></span><font color="#ffff60"><b>.</b></font>&quot;<span style="background-color: #0d0d0d"><font color="#ffa0a0">', '</font></span>&quot;<font color="#ffff60"><b>.</b></font><font color="#40ffff">mysql_real_escape_string</font><span style="background-color: #0d0d0d"><font color="#ffa500">(</font></span><font color="#ffff60"><b>$</b></font><font color="#40ffff">image</font><span style="background-color: #0d0d0d"><font color="#ffa500">)</font></span><font color="#ffff60"><b>.</b></font>&quot;<span style="background-color: #0d0d0d"><font color="#ffa0a0">', '</font></span>&quot;<font color="#ffff60"><b>.</b></font><font color="#40ffff">mysql_real_escape_string</font><span style="background-color: #0d0d0d"><font color="#ffa500">(</font></span><font color="#ffff60"><b>$</b></font><font color="#40ffff">parent</font><span style="background-color: #0d0d0d"><font color="#ffa500">)</font></span><font color="#ffff60"><b>.</b></font>&quot;<span style="background-color: #0d0d0d"><font color="#ffa0a0">');</font></span>&quot;;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<font color="#ffff60"><b>else</b></font><br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<font color="#ffff60"><b>$</b></font><font color="#40ffff">query_to_execute</font>&nbsp;<font color="#ffff60"><b>=</b></font>&nbsp;&quot;<span style="background-color: #0d0d0d"><font color="#ffa0a0">INSERT INTO Categorie VALUES ('</font></span>&quot;<font color="#ffff60"><b>.</b></font><font color="#40ffff">mysql_real_escape_string</font><span style="background-color: #0d0d0d"><font color="#ffa500">(</font></span><font color="#ffff60"><b>$</b></font><font color="#40ffff">title</font><span style="background-color: #0d0d0d"><font color="#ffa500">)</font></span><font color="#ffff60"><b>.</b></font>&quot;<span style="background-color: #0d0d0d"><font color="#ffa0a0">', '</font></span>&quot;<font color="#ffff60"><b>.</b></font><font color="#40ffff">mysql_real_escape_string</font><span style="background-color: #0d0d0d"><font color="#ffa500">(</font></span><font color="#ffff60"><b>$</b></font><font color="#40ffff">image</font><span style="background-color: #0d0d0d"><font color="#ffa500">)</font></span><font color="#ffff60"><b>.</b></font>&quot;<span style="background-color: #0d0d0d"><font color="#ffa0a0">', NULL);</font></span>&quot;;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<font color="#ffff60"><b>$</b></font><font color="#40ffff">esito_inserimento</font>&nbsp;<font color="#ffff60"><b>=</b></font>&nbsp;<font color="#ffff60"><b>$</b></font><font color="#40ffff">db_handle</font><font color="#60ff60"><b>-&gt;</b></font>query<span style="background-color: #0d0d0d"><font color="#ffa500">(</font></span><font color="#ffff60"><b>$</b></font><font color="#40ffff">query_to_execute</font><span style="background-color: #0d0d0d"><font color="#ffa500">)</font></span>;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<font color="#ffff60"><b>$</b></font><font color="#40ffff">db_handle</font><font color="#60ff60"><b>-&gt;</b></font>disconnect<span style="background-color: #0d0d0d"><font color="#ffa500">()</font></span>;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<font color="#ffff60"><b>return</b></font>&nbsp;<font color="#ffff60"><b>$</b></font><font color="#40ffff">esito_inserimento</font>;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;<span style="background-color: #0d0d0d"><font color="#ffa500">}</font></span><br>
+&nbsp;&nbsp;&nbsp;&nbsp;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;<font color="#80a0ff">/**</font><br>
+<font color="#80a0ff">&nbsp;&nbsp;&nbsp;&nbsp; * Rimuove una categoria nel sito.</font><br>
+<font color="#80a0ff">&nbsp;&nbsp;&nbsp;&nbsp; *</font><br>
+<font color="#80a0ff">&nbsp;&nbsp;&nbsp;&nbsp; * @param $title</font><br>
+<font color="#80a0ff">&nbsp;&nbsp;&nbsp;&nbsp; *&nbsp;&nbsp; La stringa contenente il titolo della categoria da rimuovere.</font><br>
+<font color="#80a0ff">&nbsp;&nbsp;&nbsp;&nbsp; * @return </font><br>
+<font color="#80a0ff">&nbsp;&nbsp;&nbsp;&nbsp; *&nbsp;&nbsp; Vero se l'operazione ha avuto successo, falso altrimenti.</font><br>
+<font color="#80a0ff">&nbsp;&nbsp;&nbsp;&nbsp; */</font><br>
+<br>
+&nbsp;&nbsp;&nbsp;&nbsp;<font color="#60ff60"><b>public</b></font>&nbsp;<font color="#60ff60"><b>static</b></font>&nbsp;<font color="#ff80ff">function</font>&nbsp;remove_category<span style="background-color: #0d0d0d"><font color="#ffa500">(</font></span><font color="#ffff60"><b>$</b></font><font color="#40ffff">title</font><span style="background-color: #0d0d0d"><font color="#ffa500">)</font></span>&nbsp;<span style="background-color: #0d0d0d"><font color="#ffa500">{</font></span>&nbsp;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<font color="#ffff60"><b>$</b></font><font color="#40ffff">db_handle</font>&nbsp;<font color="#ffff60"><b>=</b></font>&nbsp;<font color="#ff80ff">new</font>&nbsp;Database<span style="background-color: #0d0d0d"><font color="#ffa500">()</font></span>;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<font color="#ffff60"><b>$</b></font><font color="#40ffff">db_handle</font><font color="#60ff60"><b>-&gt;</b></font>connect<span style="background-color: #0d0d0d"><font color="#ffa500">()</font></span>;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<font color="#ffff60"><b>$</b></font><font color="#40ffff">query_to_execute</font>&nbsp;<font color="#ffff60"><b>=</b></font>&nbsp;&quot;<span style="background-color: #0d0d0d"><font color="#ffa0a0">DELETE FROM Categorie WHERE Titolo = '</font></span><font color="#ffff60"><b>$</b></font><font color="#40ffff">title</font><span style="background-color: #0d0d0d"><font color="#ffa0a0">';</font></span>&quot;;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<font color="#ffff60"><b>$</b></font><font color="#40ffff">esito_inserimento</font>&nbsp;<font color="#ffff60"><b>=</b></font>&nbsp;<font color="#ffff60"><b>$</b></font><font color="#40ffff">db_handle</font><font color="#60ff60"><b>-&gt;</b></font>query<span style="background-color: #0d0d0d"><font color="#ffa500">(</font></span><font color="#ffff60"><b>$</b></font><font color="#40ffff">query_to_execute</font><span style="background-color: #0d0d0d"><font color="#ffa500">)</font></span>;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<font color="#ffff60"><b>$</b></font><font color="#40ffff">db_handle</font><font color="#60ff60"><b>-&gt;</b></font>disconnect<span style="background-color: #0d0d0d"><font color="#ffa500">()</font></span>;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<font color="#ffff60"><b>return</b></font>&nbsp;<font color="#ffff60"><b>$</b></font><font color="#40ffff">esito_inserimento</font>;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;<span style="background-color: #0d0d0d"><font color="#ffa500">}</font></span><br>
+<br>
+<span style="background-color: #0d0d0d"><font color="#ffa500">}</font></span><br>
+<br>
+<span style="background-color: #0d0d0d"><font color="#ffa500">?&gt;</font></span><br>
+</font></body>
+</html>
