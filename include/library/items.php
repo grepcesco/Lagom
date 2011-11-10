@@ -98,7 +98,7 @@ class Items {
 									 Quantita, Disponibile, $type_of_operator 
 									 FROM Appartenenza{$type}ACategorie AS AC, $type as Bene 
 									 WHERE AC.$type_of_operation = Bene.BeneID 
-									 AND Off.Disponibile = '1'
+									 AND Bene.Disponibile = '1'
 									 AND AC.Categoria IN 
 										(SELECT Titolo FROM Categorie WHERE ParentID = '$keyvalue') 
 									 UNION 
@@ -106,7 +106,7 @@ class Items {
 									 Quantita, Disponibile, $type_of_operator 
 									 FROM Appartenenza{$type}ACategorie AS AC, $type AS Bene 
 									 WHERE AC.$type_of_operation = Bene.BeneID AND AC.Categoria = '$keyvalue'
-									 AND Off.Disponibile = '1'
+									 AND Bene.Disponibile = '1'
 									 ORDER BY RAND()";
 			} else {
 				$query_to_execute = "SELECT BeneID, Titolo, Data, Descrizione, ImmaginePercorsoURL,
