@@ -159,6 +159,7 @@ $sql_init_db = array(
 	"AppartenenzaRichiesteACategorie" => 'CREATE TABLE IF NOT EXISTS `AppartenenzaRichiesteACategorie` ( 
 			`Categoria` varchar(30) NOT NULL,
 			`Richiesta` int(12) NOT NULL,
+			PRIMARY KEY (`Categoria`, `Richiesta`);
 			FOREIGN KEY (`Categoria`) REFERENCES `Categorie` (`Titolo`),
 			FOREIGN KEY (`Richiesta`) REFERENCES `Richieste` (`BeneID`)
 			ON DELETE CASCADE ON UPDATE CASCADE
@@ -167,6 +168,7 @@ $sql_init_db = array(
 	"AppartenenzaOfferteACategorie" => 'CREATE TABLE IF NOT EXISTS `AppartenenzaOfferteACategorie` ( 
 			`Categoria` varchar(30) NOT NULL,
 			`Offerta` int(12) NOT NULL,
+			PRIMARY KEY (`Categoria`, `Offerta`);
 			FOREIGN KEY (`Categoria`) REFERENCES `Categorie` (`Titolo`),
 			FOREIGN KEY (`Offerta`) REFERENCES `Offerte` (`BeneID`)
 			ON DELETE CASCADE ON UPDATE CASCADE

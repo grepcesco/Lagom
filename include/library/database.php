@@ -1,6 +1,7 @@
 <?php
 
-error_reporting(0);
+// da mettere su lagom
+// error_reporting(0);
 
 /**
  * @class Database

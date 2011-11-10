@@ -179,7 +179,7 @@ switch($_GET['q']) {
 				$legend = "Segnala disponibilit&agrave; ad accettare una offerta";
 				$titolo_risposta = 'Re: '.$offerta['Titolo'];
 				echo '<h2>'.$offerta['Titolo'].'</h2>';
-				echo '<img style="float:left; padding-right: 10px" src="'.$offerta['ImmaginePercorsoURL'].'" />';
+				echo Images_View::get_medium_thumb_img_tag($offerta['ImmaginePercorsoURL']);
 				echo '<p style="clear:both">'.$offerta['Descrizione'].'</p>';
 			} elseif(isset($_GET['offer_operation_id'])) { 
 				$legend = "Rispondi";
@@ -195,7 +195,7 @@ switch($_GET['q']) {
 				else 
 					echo '<h2>Vincitore della proposta per '.$offerta['Titolo'].'</h2>';
 					
-				echo '<img style="float:left; padding-right: 10px" src="'.$offerta['ImmaginePercorsoURL'].'" />';
+				echo '<img style="float:left; padding-right: 10px" src="data/upload/medium_thumbs/medium_'.$offerta['ImmaginePercorsoURL'].'" />';
 				echo '<p style="clear:both">'.$offerta['Descrizione'].'</p>';
 
 				// stampa del thread 
@@ -435,7 +435,10 @@ switch($_GET['q']) {
 			empty($text_request) ? $error["MissingTextRequest"] = "Scrivere una descrizione della richiesta" : ''; 
 
 			if(empty($error)) {
-				echo Richieste::insert_request($request_name, $text_request, "", 1, $categoria_richiesta, $_SESSION['Username']);
+				if(Richieste::insert_request($request_name, $text_request, "", 1, $categoria_richiesta, $_SESSION['Username']))
+					echo "Richiesta aggiunta con successo";
+				else 
+					echo "E' avvenuto un errore durante l'aggiunta della richiesta";
 			} 
 		} else if (!isset($_POST['submit_request']) or !empty($error)) {  ?>
 		<form id="insert_request" method="post" action="<?php echo htmlentities($_SERVER['PHP_SELF']); ?>?q=add_request">
@@ -492,7 +495,6 @@ switch($_GET['q']) {
 				if(!empty($categoria_richiesta)) 
 					if(Richieste::edit_request($_POST['request_id'], $categoria_richiesta, "Category")) echo "Categoria aggiornata con successo!";
 
-				
 				if(!empty($text_request)) 
 					if(Richieste::edit_request($_POST['request_id'], $text_request, "Descrizione")) echo "Descrizione aggiornata con successo!";
 				
@@ -532,7 +534,7 @@ switch($_GET['q']) {
 				?>
 				</select>
 			</p>
-			<p><label>Caricamento foto:<span class="didascalia">Cambia l'immagine</span></label><input type="file" name="preview_request" id="preview_request"></p>
+			<!-- <p><label>Caricamento foto:<span class="didascalia">Cambia l'immagine</span></label><input type="file" name="preview_request" id="preview_request"></p> -->
 			<p><label>Descrizione:<span class="didascalia">Cambia la descrizione della tua richiesta</span></label>
 			<textarea rows="5" cols="58" name="text_request" id="text_request"><?php echo $request_to_edit['Descrizione']; ?></textarea>
 			</p>
@@ -584,7 +586,7 @@ switch($_GET['q']) {
 	case "view_offer":
 		$offer = Offerte::get_offer($_GET['offer_id'], "BeneID");
 		echo '<h2>Proposte per '.$offer['Titolo'].'</h2>';
-		echo '<img style="float:left; padding-right: 10px" src="'.$offer['ImmaginePercorsoURL'].'" />';
+		echo '<img style="float:left; padding-right: 10px" src="data/upload/medium_thumbs/medium_'.$offer['ImmaginePercorsoURL'].'" />';
 		echo '<p>'.$offer['Descrizione'].'</p>';
 		if($offer['Disponibile'] == 1)
 			echo '<h2 style="clear:left"> Risposte </h2>';
@@ -1203,7 +1205,7 @@ jQuery(document).ready(function(){
     	  beforeSend: function() { // aggiungere feedback 
 		  },
     	  success: function(pakkoso) {// aggiungere feedback 
-				alert(pakkoso);
+				alert("Cambiamenti salvati correttamente");
 		  }
     	});
 

@@ -106,24 +106,22 @@ class Items {
 									 Quantita, Disponibile, $type_of_operator 
 									 FROM Appartenenza{$type}ACategorie AS AC, $type AS Bene 
 									 WHERE AC.$type_of_operation = Bene.BeneID AND AC.Categoria = '$keyvalue'
-									 AND Bene.Disponibile = '1'
 									 ORDER BY RAND()";
 			} else {
 				$query_to_execute = "SELECT BeneID, Titolo, Data, Descrizione, ImmaginePercorsoURL,
 									 Quantita, Disponibile, $type_of_operator 
-									 FROM Appartenenza".$type."ACategorie AS AC, $type as Off 
-									 WHERE AC.$type_of_operation = Off.BeneID 
+									 FROM Appartenenza".$type."ACategorie AS AC, $type as Bene 
+									 WHERE AC.$type_of_operation = Bene.BeneID 
 									 AND Categoria = '$keyvalue'
-									 AND Off.Disponibile = '1'
 									 ORDER BY RAND()";
 			}
 		}
 		elseif($filter != '') { 
 			$query_to_execute = "SELECT * FROM $type 
-								 WHERE $filter = '$keyvalue' AND Disponibile = '1'
+								 WHERE $filter = '$keyvalue' 
 								 ORDER BY RAND()"; 
 		} 
-		else { $query_to_execute = "SELECT * FROM $type WHERE Disponibile = '1' ORDER BY RAND()"; }
+		else { $query_to_execute = "SELECT * FROM $type ORDER BY RAND()"; }
 	
 		if($limit > 0) 
 			$query_to_execute .= " LIMIT $limit;";
@@ -242,6 +240,7 @@ class Items {
 	protected static function edit_item($type, $id_item, $keyvalue, $key) {
 		$db_handle = new Database();
 		$db_handle->connect();
+		$keyvalue = mysql_real_escape_string($keyvalue);
 		$query_to_execute = "UPDATE $type SET $key = '$keyvalue' WHERE BeneID = '$id_item';";
 		$esito = $db_handle->query($query_to_execute);
 		$db_handle->disconnect();
